@@ -17,13 +17,13 @@ module.exports = {
 
     },
     async listarPedidos(req, res) {
-        const cliente_params = req.query.cliente;
+        const cliente_params = req.query;
 
         if (cliente_params) {
             let cliente = await Pedido.findAll({
                 where: {
                     cliente: {
-                        [Op.like]: `%${cliente_params}`
+                        [Op.like]: `%${cliente_params}%`
                     }
                 }
             })
